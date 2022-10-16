@@ -47,19 +47,21 @@ const signUp = asyncWrapper(async (req, res)=>{
 
 const login = asyncWrapper(async (req, res)=>{
     const{username, password} = req.body
+    console.log("login received ")
     if(!username || !password){
-        res.status(400).json({msg: "Not all fields have been entered."})
+        return res.status(400).json({msg: "Not all fields have been entered."})
     }
     const user = await User.findOne({username: username})
     if(!user){
-        res.status(400).json({msg: "An account with the associated email does not exist."})
+        return res.status(400).json({msg: "An account with the associated email does not exist."})
     } else if(!user.valid){
-        res.status(400).json({msg: "Account not verifed."})
+        return res.status(400).json({msg: "Account not verifed."})
     } else if(!(await bcrypt.compare(password, user.password))){
-        res.status(400).json({msg: "Invalid credentials. Please try again."})
+        return res.status(400).json({msg: "Invalid credentials. Please try again."})
     } else{
+        console.log("baka")
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET)
-        res.json({
+        return res.status(200).json({
             token,
             user: {
                 id: user._id
@@ -115,6 +117,15 @@ const updateProfile = asyncWrapper(async(req, res)=>{
     return res.status(200).json("user profile has been updated")
 })
 
+const getInfo = asyncWrapper(async(req, res)=>{
+    const {id:userID} = req.params
+    const user = await User.findOne({_id: userID})
+    if(!user || !user.valid) {
+        return res.status(400).json("user doesn't exist or is already validated.")
+    }
+    return res.status(200).json({user:user});
+})
+
 const chooseTasks = asyncWrapper(async(req, res)=>{
     const {id:userID} = req.params
     const user = await User.findOne({_id: userID})
@@ -165,5 +176,5 @@ const chooseTasks = asyncWrapper(async(req, res)=>{
 
 
 module.exports = {
-    login, signUp, validateUser, resendCode, updateProfile, chooseTasks
+    login, signUp, validateUser, resendCode, updateProfile, chooseTasks, getInfo
 }

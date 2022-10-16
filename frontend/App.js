@@ -14,6 +14,7 @@ import MatchFound from "./screens/main/MatchFound";
 import ScanCode from "./screens/main/ScanCode";
 import ChatRoom from "./screens/main/ChatRoom";
 
+
 export default function App() {
   const Stack = createNativeStackNavigator();
   useDeviceContext(tw);
@@ -60,5 +61,6 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
+    
   );
 }
