@@ -50,6 +50,7 @@ const Home = ({ navigation }) => {
       <SafeAreaView></SafeAreaView>
       <View
         style={tw`flex ${!activeTask ? "h-1/5" : "h-1/10"} mx-9 android:pt-10`}>
+      <View style={tw`flex flex-col py-6 mx-9`}>
         <View style={tw`flex flex-row items-center`}>
           <TouchableOpacity
             onPress={() =>
@@ -86,7 +87,7 @@ const Home = ({ navigation }) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              style={tw`mt-4 rounded-2 bg-yellow-200 p-4 py-3 justify-center flex-1`}>
+              style={tw`mt-4 rounded-2 bg-[#FEFFC3] p-4 py-3 justify-center flex-1`}>
               <Text style={tw`text-4xl mb-.5`}>{myProfile.connections}</Text>
               <View style={tw`flex flex-row`}>
                 <Feather name="user" size={16} color="black" />
@@ -194,11 +195,20 @@ const Home = ({ navigation }) => {
                 View Profile
               </Text>
               <CustomButton
-                styles="mt-18 bg-red-400 py-4"
+                styles="mt-18 bg-[#D1EDBF] py-4"
+                textStyle="text-xl"
+                text="Send A Message!"
+                dark = {false}
+                onPress={() => navigation.navigate("Chat")}
+              >
+              </CustomButton>
+              <CustomButton
+                styles="mt-4 bg-red-400 py-4"
                 textStyle="text-white text-xl"
                 text="Confirm meet up!"
                 onPress={() => setModalVisible(true)}
               />
+              
             </View>
 
             <Modal visible={modalVisible} animationType="slide">
