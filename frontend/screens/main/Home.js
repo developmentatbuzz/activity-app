@@ -24,15 +24,15 @@ const Home = ({ navigation }) => {
       id: 0,
     },
     {
-      name: "Lmao",
+      name: "Omae wa",
       id: 1,
     },
     {
-      name: "XD",
+      name: "Mou",
       id: 2,
     },
     {
-      name: "Lmfao",
+      name: "Shindeirou",
       id: 3,
     },
   ];
@@ -115,8 +115,8 @@ const Home = ({ navigation }) => {
           <FlatList
             ListHeaderComponent={
               <View>
-                <Text style={tw`text-3xl font-bold`}>This Week's Tasks</Text>
-                <Text style={tw`text-gray-600 mt-1`}>
+                <Text style={tw`text-3xl text-gray-800 font-bold`}>This Week's Tasks</Text>
+                <Text style={tw`text-gray-500 mt-1 font-bold`}>
                   Select all that you would like to do!
                 </Text>
               </View>
@@ -138,7 +138,8 @@ const Home = ({ navigation }) => {
             data={TaskList}
             scrollEnabled={false}
             renderItem={({ item }) => (
-              <Pressable
+              <View>
+                <Pressable
                 onPress={() => {
                   let index = selectedTasks.indexOf(item.id);
                   if (index > -1) {
@@ -149,14 +150,17 @@ const Home = ({ navigation }) => {
                     setSelectedTasks([...selectedTasks, item.id]);
                   }
                 }}
-                style={tw`flex flex-row items-center px-4 bg-gray-300 rounded-md  ${
+                style={tw`flex flex-row items-center px-4 bg-gray-300 rounded-md z-10  ${
                   selectedTasks.includes(item.id)
                     ? colorList[item.id % colorList.length]
-                    : "bg-gray-300"
+                    : "bg-[#24292C]"
                 } h-17 mb-5`}>
                 <View style={tw`h-10 w-10 bg-red-400 rounded-full mr-3`}></View>
-                <Text style={tw`text-lg`}>{item.name}</Text>
-              </Pressable>
+                <Text style={tw`text-lg font-bold text-gray-600`}>{item.name}</Text>
+                </Pressable>
+                {selectedTasks.includes(item.id) && <View style={tw`w-full h-19 bg-gray-500' absolute rounded-2`}></View>}
+              </View>
+              
             )}
           />
         )}
