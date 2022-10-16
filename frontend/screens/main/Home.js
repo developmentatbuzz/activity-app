@@ -63,7 +63,7 @@ const Home = ({ navigation }) => {
   return (
     <View style={tw`flex-1 bg-[#FAF4F2]`}>
       <SafeAreaView></SafeAreaView>
-      <View style={tw`flex ${!activeTask ? "h-1/5" : "h-1/10"} mx-9 android:pt-10`}>
+      <View style={tw`flex flex-col py-6 mx-9`}>
         <View style={tw`flex flex-row items-center`}>
           <TouchableOpacity
             onPress={() =>
@@ -100,7 +100,7 @@ const Home = ({ navigation }) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              style={tw`mt-4 rounded-2 bg-yellow-200 p-4 py-3 justify-center flex-1`}>
+              style={tw`mt-4 rounded-2 bg-[#FEFFC3] p-4 py-3 justify-center flex-1`}>
               <Text style={tw`text-4xl mb-.5`}>{myProfile.connections}</Text>
               <View style={tw`flex flex-row`}>
                 <Feather name="user" size={16} color="black" />
@@ -156,9 +156,9 @@ const Home = ({ navigation }) => {
                     : "bg-[#24292C]"
                 } h-17 mb-5`}>
                 <View style={tw`h-10 w-10 bg-red-400 rounded-full mr-3`}></View>
-                <Text style={tw`text-lg font-bold text-gray-600`}>{item.name}</Text>
+                <Text style={tw`text-lg font-bold ${selectedTasks.includes(item.id) ? "text-gray-600" : "text-white"}`}>{item.name}</Text>
                 </Pressable>
-                {selectedTasks.includes(item.id) && <View style={tw`w-full h-19 bg-gray-500' absolute rounded-2`}></View>}
+                {selectedTasks.includes(item.id) && <View style={tw`w-full h-19 bg-gray-500 absolute rounded-2`}></View>}
               </View>
               
             )}
@@ -195,11 +195,20 @@ const Home = ({ navigation }) => {
                 View Profile
               </Text>
               <CustomButton
-                styles="mt-18 bg-red-400 py-4"
+                styles="mt-18 bg-[#D1EDBF] py-4"
+                textStyle="text-xl"
+                text="Send A Message!"
+                dark = {false}
+                onPress={() => navigation.navigate("Chat")}
+              >
+              </CustomButton>
+              <CustomButton
+                styles="mt-4 bg-red-400 py-4"
                 textStyle="text-white text-xl"
                 text="Confirm meet up!"
                 onPress={() => setModalVisible(true)}
               />
+              
             </View>
 
             <Modal visible={modalVisible} animationType="slide">

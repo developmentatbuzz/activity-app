@@ -14,7 +14,7 @@ const MatchFound = (props) => {
       <View style={tw`mx-9 mt-14`}>
         <Text style={tw`text-4xl text-[#F27373] mb-3 font-semibold`}>Match Found</Text>
         <Text style={tw`text-5xl font-bold`}>Find a squirrel</Text>
-        <Text style={tw`text-2xl`}>
+        <Text style={tw`text-2xl text-gray-600`}>
           with Nabil Chowdhury
         </Text>
         <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
@@ -32,7 +32,7 @@ const MatchFound = (props) => {
         </TouchableOpacity>
         <CustomButton 
           text="Lets go!"
-          styles="py-3 mt-15 bg-green-400"
+          styles="py-3 mt-15 bg-[#D1EDBF]"
           textStyle="text-xl"
           onPress={() => {
             receivedValue(tasks[0]);

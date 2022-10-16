@@ -23,7 +23,7 @@ const LoadMatch = (props) => {
   return (
     <View style={tw`flex-1 mx-3 justify-center items-center`}>
       <SafeAreaView></SafeAreaView>
-      <Text style={tw`mb-7 text-4xl`}>Hang Tight!</Text>
+      <Text style={tw`mb-7 text-4xl font-bold`}>Hang Tight!</Text>
       <LottieView
         source={require("../../assets/earth-loading.json")}
         autoPlay

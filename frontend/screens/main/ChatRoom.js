@@ -15,7 +15,7 @@ const ChatRoom = ({navigation}) => {
     if(message == ""){
       return;
     }
-    setMessages([...messages, {msg:message, user: 1}]);
+    setMessages([...messages, {msg:message, user: userId}]);
     setMessage("");
     flatlistRef.current.scrollToEnd({animating: true});
   }
