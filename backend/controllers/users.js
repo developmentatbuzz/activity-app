@@ -68,8 +68,6 @@ const login = asyncWrapper(async (req, res)=>{
     }
 })
 
-//TODO: after validating an account, user is rerouted to /close page which should just contain a window.close() script
-// express is for serverside only so cant close from express 
 const validateUser = asyncWrapper(async(req, res)=>{
     const {id:userID} = req.params
     const code = req.body.code
@@ -83,7 +81,7 @@ const validateUser = asyncWrapper(async(req, res)=>{
     if(user && result.status === "approved"){
         user.valid = true
         await user.save()
-        res.status(200).json("success!")
+        res.status(200).json("success! user has been verified")
     } else{
         res.status(404).json("user doesn't exist or the code is incorrect")
     }
