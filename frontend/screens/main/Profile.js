@@ -7,7 +7,8 @@ import CustomButton from '../../components/CustomButton';
 const Profile = ({navigation}) => {
   return (
     <View style = {tw`w-full h-full bg-white flex flex-col items-center text-gray-800`}>
-      <SafeAreaView></SafeAreaView>
+      <SafeArea
+      ></SafeAreaView>
       <View style = {tw`absolute w-full h-60 bg-[#D1EDBF]`}></View>
       <TouchableOpacity style = {tw`w-full py-8 px-4`} onPress={()=>navigation.goBack()}>
         <Feather name = "chevron-left" size = {30} ></Feather>
@@ -23,7 +24,6 @@ const Profile = ({navigation}) => {
         <Text style={tw`text-3xl font-bold`}>About</Text>
         <View style = {tw`border-t-4 border-black`}></View>
       </View>
-    </View>
   )
 }
 

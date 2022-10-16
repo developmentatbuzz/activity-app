@@ -9,6 +9,9 @@ import SignUp from "./screens/auth/SignUp";
 import Onboard from "./screens/auth/Onboard";
 import BodyTabs from "./screens/main/BodyTabs";
 import Profile from "./screens/main/Profile";
+import LoadMatch from "./screens/main/LoadMatch";
+import MatchFound from "./screens/main/MatchFound";
+import ScanCode from "./screens/main/ScanCode";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -22,10 +25,33 @@ export default function App() {
             headerShown: false,
           }}>
           <Stack.Screen name="Onboard" component={Onboard} />
-          <Stack.Screen name="Login" component={SignIn} />
+          <Stack.Screen
+            name="Login"
+            component={SignIn}
+            options={{ gestureEnabled: false }}
+          />
           <Stack.Screen name="SignUp" component={SignUp} />
-          <Stack.Screen name="Body" component={BodyTabs} gestureEnabled={false}/>
+          <Stack.Screen
+            name="Body"
+            component={BodyTabs}
+            options={{ gestureEnabled: false }}
+          />
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen
+            name="LoadMatch"
+            component={LoadMatch}
+            options={{ gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="MatchFound"
+            component={MatchFound}
+            options={{ gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="ScanCode"
+            component={ScanCode}
+            options={{ gestureEnabled: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
