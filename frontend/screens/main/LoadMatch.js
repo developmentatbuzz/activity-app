@@ -13,7 +13,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 const LoadMatch = (props) => {
   const { width, height } = Dimensions.get("window");
   const navigation = props.navigation;
-  console.log(props)
   const receivedValue = props.route.params.receivedValue;  
 
   let id = setTimeout(() => {

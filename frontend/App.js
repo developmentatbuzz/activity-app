@@ -11,6 +11,7 @@ import BodyTabs from "./screens/main/BodyTabs";
 import Profile from "./screens/main/Profile";
 import LoadMatch from "./screens/main/LoadMatch";
 import MatchFound from "./screens/main/MatchFound";
+import ScanCode from "./screens/main/ScanCode";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -44,6 +45,11 @@ export default function App() {
           <Stack.Screen
             name="MatchFound"
             component={MatchFound}
+            options={{ gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="ScanCode"
+            component={ScanCode}
             options={{ gestureEnabled: false }}
           />
         </Stack.Navigator>
