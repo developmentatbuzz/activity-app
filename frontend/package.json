@@ -9,11 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@expo-google-fonts/poppins": "^0.2.2",
-=======
     "@react-navigation/bottom-tabs": "^6.4.0",
->>>>>>> donald
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.1",
     "expo": "~46.0.16",

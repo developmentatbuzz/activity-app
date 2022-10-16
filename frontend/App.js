@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import tw from 'twrnc';
-import { useDeviceContext } from 'twrnc';
-import SignIn from './screens/auth/SignIn';
-import SignUp from './screens/auth/SignUp';
-import Onboard from './screens/auth/Onboard';
-
-export default function App() {
-  return (
-    <Onboard></Onboard>
-=======
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider as PaperProvider } from "react-native-paper";
@@ -30,7 +17,7 @@ export default function App() {
     <PaperProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Body"
+          initialRouteName="Onboard"
           screenOptions={{
             headerShown: false,
           }}>
@@ -42,6 +29,5 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
->>>>>>> donald
   );
 }

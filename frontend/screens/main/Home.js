@@ -23,28 +23,24 @@ const Home = ({ navigation }) => {
       id: 0,
     },
     {
-      name: "Lmao",
+      name: "Omae wa",
       id: 1,
     },
     {
-      name: "XD",
+      name: "Mou",
       id: 2,
     },
     {
-      name: "Lmfao",
+      name: "Shindeirou",
       id: 3,
-    },
-    {
-      name: "Lmfao",
-      id: 4,
     },
   ];
 
   const colorList = [
-    "bg-red-400",
-    "bg-blue-400",
-    "bg-green-400",
-    "bg-yellow-400",
+    "bg-[#ABCDEF]",
+    "bg-[#D0BFED]",
+    "bg-[#EDBFBF]",
+    "bg-[#EDE8BF]",
   ];
 
   const [selectedTasks, setSelectedTasks] = useState([]);
@@ -56,7 +52,7 @@ const Home = ({ navigation }) => {
 
   useDeviceContext(tw);
   return (
-    <View style={tw`flex-1 bg-red-300`}>
+    <View style={tw`flex-1 bg-[#FAF4F2]`}>
       <SafeAreaView></SafeAreaView>
       <View style={tw`flex h-1/4 mx-9`}>
         <View style={tw`flex flex-row items-center`}>
@@ -78,7 +74,7 @@ const Home = ({ navigation }) => {
         {!activeTask && (
           <View style={tw`mt-6 flex flex-row self-center`}>
             <TouchableOpacity
-              style={tw`mt-4 rounded-2 bg-green-200 p-4 py-3 justify-center mr-3 flex-1`}>
+              style={tw`mt-4 rounded-2 bg-[#FACBCB] p-4 py-3 justify-center mr-3 flex-1`}>
               <Text style={tw`text-4xl mb-.5`}>82</Text>
               <View style={tw`flex flex-row`}>
                 <Feather name="check-square" size={16} color="black" />
@@ -86,7 +82,7 @@ const Home = ({ navigation }) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              style={tw`mt-4 rounded-2 bg-yellow-200 p-4 py-3 justify-center flex-1`}>
+              style={tw`mt-4 rounded-2 bg-[#FFE7AB] p-4 py-3 justify-center flex-1`}>
               <Text style={tw`text-4xl mb-.5`}>50</Text>
               <View style={tw`flex flex-row`}>
                 <Feather name="user" size={16} color="black" />
@@ -101,8 +97,8 @@ const Home = ({ navigation }) => {
           <FlatList
             ListHeaderComponent={
               <View>
-                <Text style={tw`text-3xl font-bold`}>This Week's Tasks</Text>
-                <Text style={tw`text-gray-600 mt-1`}>
+                <Text style={tw`text-3xl text-gray-800 font-bold`}>This Week's Tasks</Text>
+                <Text style={tw`text-gray-500 mt-1 font-bold`}>
                   Select all that you would like to do!
                 </Text>
               </View>
@@ -110,11 +106,12 @@ const Home = ({ navigation }) => {
             ListHeaderComponentStyle={tw`rounded-t-3xl pt-5 mb-8`}
             contentContainerStyle={tw`mx-9 pb-32`}
             ListFooterComponent={
-              <CustomButton text="Go!" textStyle="text-xl" styles="py-3" />
+              <CustomButton text="Go!" textStyle="text-xl" styles="bg-[#D1EDBF]" />
             }
             data={TaskList}
             renderItem={({ item }) => (
-              <Pressable
+              <View>
+                <Pressable
                 onPress={() => {
                   let index = selectedTasks.indexOf(item.id);
                   if (index > -1) {
@@ -125,14 +122,17 @@ const Home = ({ navigation }) => {
                     setSelectedTasks([...selectedTasks, item.id]);
                   }
                 }}
-                style={tw`flex flex-row items-center px-4 bg-gray-300 rounded-md  ${
+                style={tw`flex flex-row items-center px-4 bg-gray-300 rounded-md z-10  ${
                   selectedTasks.includes(item.id)
                     ? colorList[item.id % colorList.length]
-                    : "bg-gray-300"
+                    : "bg-[#24292C]"
                 } h-17 mb-5`}>
                 <View style={tw`h-10 w-10 bg-red-400 rounded-full mr-3`}></View>
-                <Text style={tw`text-lg`}>{item.name}</Text>
-              </Pressable>
+                <Text style={tw`text-lg font-bold text-gray-600`}>{item.name}</Text>
+                </Pressable>
+                {selectedTasks.includes(item.id) && <View style={tw`w-full h-19 bg-gray-500' absolute rounded-2`}></View>}
+              </View>
+              
             )}
           />
         )}
