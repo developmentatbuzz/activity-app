@@ -57,7 +57,8 @@ const UserSchema = new mongoose.Schema({
     bio: {
         type: String,
         trim: true
-    }
+    },
+    
 }) 
 
 module.exports = mongoose.model('User', UserSchema)

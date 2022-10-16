@@ -121,6 +121,7 @@ const chooseTasks = asyncWrapper(async(req, res)=>{
     if(!user || !user.valid) {
         return res.status(400).json("user doesn't exist or is already validated.")
     }
+    user.status = "lfg"
     user.tasks = req.body.tasks
     await user.save
     return res.status(200).json("user's weekly tasks have been saved successfully")
