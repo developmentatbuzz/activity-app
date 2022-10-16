@@ -7,7 +7,7 @@ const CustomButton = ({text, textStyle, styles, leading, onPress, dark}) => {
   return (
     <TouchableOpacity style = {tw`mt-4 rounded-2 bg-green-200 w-full p-4 py-5 flex flex-row justify-center ${styles}`} onPress = {onPress}>
       {leading && leading}
-      <Text style = {tw`${dark ? "text-white" : "text-gray-600"} ${leading ? "ml-4" : ""} font-bold ${textStyle}`}>{text}</Text>
+      <Text style = {tw`${dark ? "text-white" : "text-gray-600"} ${leading && text ? "ml-4" : ""} font-bold ${textStyle}`}>{text}</Text>
     </TouchableOpacity>
   )
 }
