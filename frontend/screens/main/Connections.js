@@ -36,7 +36,7 @@ const Connections = ({navigation}) => {
         value={search}
         onChangeText={(text) => filterData(text)}
         placeholder="Search"
-        style={tw`bg-[#FDE8E8] mx-5 mt-5 mb-6 border-y-0`}
+        style={tw`bg-[#FDE8E8] mx-5 mt-5 mb-6 border-y-0 android:mt-10`}
       />
       <FlatList
         contentContainerStyle={tw`pb-10`}

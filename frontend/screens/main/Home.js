@@ -48,8 +48,7 @@ const Home = ({ navigation }) => {
   return (
     <View style={tw`flex-1 bg-[#FAF4F2]`}>
       <SafeAreaView></SafeAreaView>
-      <View
-        style={tw`flex ${!activeTask ? "h-1/5" : "h-1/10"} mx-9 android:pt-10`}>
+      <View style={tw`flex`}>
       <View style={tw`flex flex-col py-6 mx-9`}>
         <View style={tw`flex flex-row items-center`}>
           <TouchableOpacity
@@ -96,6 +95,7 @@ const Home = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         )}
+      </View>
       </View>
       <View style={tw`flex h-full bg-white rounded-t-3xl`}>
         {!activeTask && (
