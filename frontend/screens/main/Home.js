@@ -6,7 +6,6 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -34,17 +33,13 @@ const Home = ({ navigation }) => {
       name: "Lmfao",
       id: 3,
     },
-    {
-      name: "Lmfao",
-      id: 4,
-    },
   ];
 
   const colorList = [
-    "bg-red-400",
-    "bg-blue-400",
-    "bg-green-400",
-    "bg-yellow-400",
+    "bg-red-100",
+    "bg-blue-100",
+    "bg-teal-100",
+    "bg-orange-100",
   ];
 
   const [selectedTasks, setSelectedTasks] = useState([]);
@@ -56,9 +51,9 @@ const Home = ({ navigation }) => {
 
   useDeviceContext(tw);
   return (
-    <View style={tw`flex-1 bg-red-300`}>
+    <View style={tw`flex-1 bg-[#FAF4F2]`}>
       <SafeAreaView></SafeAreaView>
-      <View style={tw`flex h-1/4 mx-9`}>
+      <View style={tw`flex ${!activeTask ? "h-1/5" : "h-1/10"} mx-9`}>
         <View style={tw`flex flex-row items-center`}>
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <Avatar.Image
@@ -76,7 +71,7 @@ const Home = ({ navigation }) => {
           </View>
         </View>
         {!activeTask && (
-          <View style={tw`mt-6 flex flex-row self-center`}>
+          <View style={tw`flex flex-row self-center`}>
             <TouchableOpacity
               style={tw`mt-4 rounded-2 bg-green-200 p-4 py-3 justify-center mr-3 flex-1`}>
               <Text style={tw`text-4xl mb-.5`}>82</Text>
@@ -96,7 +91,7 @@ const Home = ({ navigation }) => {
           </View>
         )}
       </View>
-      <View style={tw`flex h-3/4 bg-white rounded-t-3xl`}>
+      <View style={tw`flex h-full bg-white rounded-t-3xl`}>
         {!activeTask && (
           <FlatList
             ListHeaderComponent={
@@ -110,9 +105,12 @@ const Home = ({ navigation }) => {
             ListHeaderComponentStyle={tw`rounded-t-3xl pt-5 mb-8`}
             contentContainerStyle={tw`mx-9 pb-32`}
             ListFooterComponent={
-              <CustomButton text="Go!" textStyle="text-xl" styles="py-3" />
+              <CustomButton text="Go!" textStyle="text-xl" styles="py-3" onPress={() => navigation.navigate("LoadMatch", {
+                receivedValue: receivedValue
+              })} />
             }
             data={TaskList}
+            scrollEnabled={false}
             renderItem={({ item }) => (
               <Pressable
                 onPress={() => {
@@ -135,6 +133,12 @@ const Home = ({ navigation }) => {
               </Pressable>
             )}
           />
+        )}
+
+        {activeTask && (
+          <View> 
+            
+          </View>
         )}
       </View>
     </View>

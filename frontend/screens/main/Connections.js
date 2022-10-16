@@ -3,7 +3,9 @@ import { View } from 'react-native'
 
 const Connections = () => {
   return (
-    <View></View>
+    <View>
+      
+    </View>
   )
 }
 
