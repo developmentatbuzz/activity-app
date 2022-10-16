@@ -7,16 +7,17 @@ import { useDeviceContext } from "twrnc";
 import SignIn from "./screens/auth/SignIn";
 import SignUp from "./screens/auth/SignUp";
 import Onboard from "./screens/auth/Onboard";
-import BodyTabs from "./screens/main/BodyTabs";
+import BodyTabs from "./screens/main/BodyTabs"
 import Profile from "./screens/main/Profile";
 import LoadMatch from "./screens/main/LoadMatch";
 import MatchFound from "./screens/main/MatchFound";
 import ScanCode from "./screens/main/ScanCode";
+import { LogBox } from 'react-native';
 import ChatRoom from "./screens/main/ChatRoom";
-
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+  LogBox.ignoreLogs([""]); 
   useDeviceContext(tw);
   return (
     <PaperProvider>

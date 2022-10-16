@@ -15,27 +15,11 @@ import { useDeviceContext } from "twrnc";
 import { Avatar } from "react-native-paper";
 import CustomButton from "../../components/CustomButton";
 import { Feather, Ionicons } from "@expo/vector-icons";
-import { people } from "../../data";
+import { people, tasks } from "../../data";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 const Home = ({ navigation }) => {
-  const TaskList = [
-    {
-      name: "Find a squirrel",
-      id: 0,
-    },
-    {
-      name: "Omae wa",
-      id: 1,
-    },
-    {
-      name: "Mou",
-      id: 2,
-    },
-    {
-      name: "Shindeirou",
-      id: 3,
-    },
-  ];
 
   const colorList = [
     "bg-red-100",
@@ -46,6 +30,7 @@ const Home = ({ navigation }) => {
 
   const [selectedTasks, setSelectedTasks] = useState([]);
   const [activeTask, setActiveTask] = useState(null);
+  const [metUp, setMetUp] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const myId = 1827;
   let myProfile = people.find((person) => person.id === myId);
@@ -63,11 +48,13 @@ const Home = ({ navigation }) => {
   return (
     <View style={tw`flex-1 bg-[#FAF4F2]`}>
       <SafeAreaView></SafeAreaView>
+      <View
+        style={tw`flex ${!activeTask ? "h-1/5" : "h-1/10"} mx-9 android:pt-10`}>
       <View style={tw`flex flex-col py-6 mx-9`}>
         <View style={tw`flex flex-row items-center`}>
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate("Profile", {
+              navigation.push("Profile", {
                 id: myId,
               })
             }>
@@ -115,8 +102,10 @@ const Home = ({ navigation }) => {
           <FlatList
             ListHeaderComponent={
               <View>
-                <Text style={tw`text-3xl text-gray-800 font-bold`}>This Week's Tasks</Text>
-                <Text style={tw`text-gray-500 mt-1 font-bold`}>
+                <Text style={tw`text-3xl text-gray-800 font-bold`}>
+                  This Week's Tasks
+                </Text>
+                <Text style={tw`text-gray-400 mt-1 font-bold`}>
                   Select all that you would like to do!
                 </Text>
               </View>
@@ -135,32 +124,43 @@ const Home = ({ navigation }) => {
                 }
               />
             }
-            data={TaskList}
+            data={tasks}
             scrollEnabled={false}
             renderItem={({ item }) => (
               <View>
                 <Pressable
-                onPress={() => {
-                  let index = selectedTasks.indexOf(item.id);
-                  if (index > -1) {
-                    let arrayCopy = [...selectedTasks];
-                    arrayCopy.splice(index, 1);
-                    setSelectedTasks(arrayCopy);
-                  } else {
-                    setSelectedTasks([...selectedTasks, item.id]);
-                  }
-                }}
-                style={tw`flex flex-row items-center px-4 bg-gray-300 rounded-md z-10  ${
-                  selectedTasks.includes(item.id)
-                    ? colorList[item.id % colorList.length]
-                    : "bg-[#24292C]"
-                } h-17 mb-5`}>
-                <View style={tw`h-10 w-10 bg-red-400 rounded-full mr-3`}></View>
-                <Text style={tw`text-lg font-bold ${selectedTasks.includes(item.id) ? "text-gray-600" : "text-white"}`}>{item.name}</Text>
+                  onPress={() => {
+                    let index = selectedTasks.indexOf(item.id);
+                    if (index > -1) {
+                      let arrayCopy = [...selectedTasks];
+                      arrayCopy.splice(index, 1);
+                      setSelectedTasks(arrayCopy);
+                    } else {
+                      setSelectedTasks([...selectedTasks, item.id]);
+                    }
+                  }}
+                  style={tw`flex flex-row items-center px-4 bg-gray-300 rounded-md z-10  ${
+                    selectedTasks.includes(item.id)
+                      ? colorList[item.id % colorList.length]
+                      : "bg-[#24292C]"
+                  } h-17 mb-5`}>
+                  {/* <View
+                    style={tw`h-10 w-10 bg-red-400 rounded-full mr-3`}></View> */}
+                  <MaterialCommunityIcons name={item.icon} size={30} color={selectedTasks.includes(item.id) ? "black" : "white"} style={tw` mr-3`}/>
+                  <Text
+                    style={tw`text-lg font-bold ${
+                      selectedTasks.includes(item.id)
+                        ? "text-gray-600"
+                        : "text-white"
+                    }`}>
+                    {item.name}
+                  </Text>
                 </Pressable>
-                {selectedTasks.includes(item.id) && <View style={tw`w-full h-19 bg-gray-500 absolute rounded-2`}></View>}
+                {selectedTasks.includes(item.id) && (
+                  <View
+                    style={tw`w-full h-19 bg-gray-400' absolute rounded-2`}></View>
+                )}
               </View>
-              
             )}
           />
         )}
@@ -177,7 +177,7 @@ const Home = ({ navigation }) => {
               </View>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("Profile", { id: activeTask })
+                  navigation.push("Profile", { id: partnerProfile.id })
                 }>
                 <Avatar.Image
                   size={200}
@@ -190,7 +190,7 @@ const Home = ({ navigation }) => {
               <Text
                 style={tw`self-center mt-3 text-lg`}
                 onPress={() =>
-                  navigation.navigate("Profile", { id: partnerProfile.id })
+                  navigation.push("Profile", { id: partnerProfile.id })
                 }>
                 View Profile
               </Text>
@@ -235,9 +235,8 @@ const Home = ({ navigation }) => {
                     style={tw`mt-25 bg-[#F27373] rounded px-18 py-2`}
                     onPress={() => {
                       setModalVisible(false);
-                      navigation.navigate("ScanCode")
-                    }}
-                  >
+                      navigation.navigate("ScanCode");
+                    }}>
                     <Ionicons name="camera" size={30} color="white" />
                   </TouchableOpacity>
                 </View>

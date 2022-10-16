@@ -2,7 +2,7 @@ import React from "react";
 import { SafeAreaView, View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import tw from "twrnc";
 import CustomButton from "../../components/CustomButton";
-import { tasks } from "../../data";
+import { tasks, people } from "../../data";
 
 const MatchFound = (props) => {
   const navigation = props.navigation;
@@ -17,7 +17,7 @@ const MatchFound = (props) => {
         <Text style={tw`text-2xl text-gray-600`}>
           with Nabil Chowdhury
         </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+        <TouchableOpacity onPress={() => navigation.push("Profile", {id: people[0].id})}>
           <View style={tw`shadow-xl`}>
             <ImageBackground
               source={require("./nc.jpg")}
