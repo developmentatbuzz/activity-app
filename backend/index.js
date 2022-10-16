@@ -4,6 +4,10 @@ const app = express()
 const users = require('./routes/users')
 const cors = require("cors")
 const connectDB = require('./db/connect')
+// const http = require('http');
+// const server = http.createServer(app);
+// const { Server } = require("socket.io");
+// const io = new Server(server);
 require('dotenv').config()
 
 //  middleware 
@@ -19,6 +23,9 @@ const start = async () =>{
     try{
         await connectDB(process.env.MONGO_URI)
         app.listen(port, console.log(`http://localhost:${port}`))
+        // io.on('connection', (socket) => {
+        //     console.log('a user connected');
+        // });
     } catch (error){
         console.log(error)
     }

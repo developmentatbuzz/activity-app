@@ -100,6 +100,34 @@ const resendCode = asyncWrapper(async(req, res)=>{
     .create({to: user.number, channel: 'sms'})
     return res.status(200).json("new code sent!")
 })
+
+const updateProfile = asyncWrapper(async(req, res)=>{
+    const {id:userID} = req.params
+    const {tasks, icon, major, interests, bio} = req.body
+    const user = await User.findOne({_id: userID})
+    if(!user || !user.valid) {
+        return res.status(400).json("user doesn't exist or is already validated.")
+    }
+    user.icon = icon
+    user.major = major
+    user.interests = interests
+    user.bio = bio
+    user.tasks = tasks
+    await user.save()
+    return res.status(200).json("user profile has been updated")
+})
+
+const chooseTasks = asyncWrapper(async(req, res)=>{
+    const {id:userID} = req.params
+    const user = await User.findOne({_id: userID})
+    if(!user || !user.valid) {
+        return res.status(400).json("user doesn't exist or is already validated.")
+    }
+    user.tasks = req.body.tasks
+    await user.save
+    return res.status(200).json("user's weekly tasks have been saved successfully")
+})
+
 // method used in front end, validates if user is logged in
 // const validateUser = asyncWrapper(async(req, res)=>{
 //     const token = req.header("x-auth-token")
@@ -138,5 +166,5 @@ const resendCode = asyncWrapper(async(req, res)=>{
 
 
 module.exports = {
-    login, signUp, validateUser, resendCode
+    login, signUp, validateUser, resendCode, updateProfile, chooseTasks
 }
