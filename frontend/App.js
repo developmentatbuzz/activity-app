@@ -8,6 +8,7 @@ import SignIn from "./screens/auth/SignIn";
 import SignUp from "./screens/auth/SignUp";
 import Onboard from "./screens/auth/Onboard";
 import BodyTabs from "./screens/main/BodyTabs";
+import Profile from "./screens/main/Profile";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -23,7 +24,8 @@ export default function App() {
           <Stack.Screen name="Onboard" component={Onboard} />
           <Stack.Screen name="Login" component={SignIn} />
           <Stack.Screen name="SignUp" component={SignUp} />
-          <Stack.Screen name="Body" component={BodyTabs} />
+          <Stack.Screen name="Body" component={BodyTabs} gestureEnabled={false}/>
+          <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
