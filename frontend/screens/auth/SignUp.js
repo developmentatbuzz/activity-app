@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {Text, View, TextInput} from 'react-native';
 import tw from 'twrnc';
 import { useDeviceContext } from 'twrnc';
@@ -47,3 +48,15 @@ export default function SignUp() {
   );
 }
 
+=======
+import React from 'react'
+import { View } from 'react-native'
+
+const SignUp = () => {
+  return (
+    <View></View>
+  )
+}
+
+export default SignUp
+>>>>>>> donald

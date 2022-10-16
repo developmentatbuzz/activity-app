@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {Text, View, TextInput} from 'react-native';
 import tw from 'twrnc';
 import { useDeviceContext } from 'twrnc';
@@ -18,3 +19,15 @@ export default function Onboard() {
   );
 }
 
+=======
+import React from 'react'
+import { View } from 'react-native'
+
+const Onboard = () => {
+  return (
+    <View></View>
+  )
+}
+
+export default Onboard
+>>>>>>> donald
